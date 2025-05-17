@@ -1,0 +1,115 @@
+services:
+  # Nessie Catalog Server Using In-Memory Store
+  nessie:
+    ##platform: linux/amd64/v8
+    image: projectnessie/nessie:latest
+    container_name: nessie
+    networks:
+      dbs-dremio-superset:
+    ports:
+      - 19120:19120
+  # Minio Storage Server
+  minio:
+    ##platform: linux/amd64/v8
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password
+      - MINIO_DOMAIN=storage
+      - MINIO_REGION_NAME=us-east-1
+      - MINIO_REGION=us-east-1
+    networks:
+      dbs-dremio-superset:
+    ports:
+      - 9001:9001
+      - 9000:9000
+    command: ["server", "/data", "--console-address", ":9001"]
+  # Dremio
+  dremio:
+    #platform: linux/amd64/v8
+    image: dremio/dremio-oss:latest
+    ports:
+      - 9047:9047
+      - 31010:31010
+      - 32010:32010
+    container_name: dremio
+    environment:
+      - DREMIO_JAVA_SERVER_EXTRA_OPTS=-Dpaths.dist=file:///opt/dremio/data/dist
+    networks:
+      dbs-dremio-superset:
+  #MongoDB
+  mongodb:
+    #platform: linux/amd64/v8
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    networks:
+      dbs-dremio-superset:
+  # Postgres
+  postgres:
+    #platform: linux/amd64/v8
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5435:5432"
+    networks:
+      dbs-dremio-superset:
+  #SQLServer
+  sqlserver:
+    #platform: linux/amd64/v8
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "Yourpassword2024"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      dbs-dremio-superset:
+  # Elasticsearch
+  elasticsearch:
+    #platform: linux/amd64/v8
+    image: elasticsearch:7.17.21
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      dbs-dremio-superset:
+  # MySQL
+  mysql:
+    #platform: linux/amd64/v8
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=exampledb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3307:3306"
+    networks:
+      dbs-dremio-superset:
+  #Superset
+  superset:
+    #platform: linux/amd64/v8
+    image: alexmerced/dremio-superset
+    platform: linux/amd64
+    container_name: superset
+    networks:
+      dbs-dremio-superset:
+    ports:
+      - 8080:8088
+networks:
+  dbs-dremio-superset:
