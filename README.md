@@ -1,15 +1,50 @@
-# Exploring data and serialization protocols
+# Exploración de Formatos de Datos y Protocolos de Serialización
 
-Using python 3.11.9
+Este repositorio contiene pruebas de concepto (PoCs), ejemplos y entornos de evaluación para diferentes formatos de almacenamiento de datos, protocolos de serialización y arquitecturas de Data Lakehouse.
 
-Avro: AvroExample.py, schema.avsc, and test.avro (generated from copilot)
-grpc: helloworld, route_guide from https://grpc.io/docs/what-is-grpc/introduction/ 
-parquet: https://towardsdatascience.com/easy-parquet-tutorial-best-practices-237955e46cb7
-Delta:  - https://formulae.brew.sh/formula/apache-spark
-        - https://docs.delta.io/latest/quick-start.html
-        - https://medium.com/@ansabiqbal/delta-lake-introduction-with-examples-using-pyspark-cb2a0d7a549d
-Iceberg:
-        - https://iceberg.apache.org/spark-quickstart/ AWS
-        - https://py.iceberg.apache.org/ 
-        - https://tabular.medium.com/reading-apache-iceberg-from-python-with-pyiceberg-8b8cff36f4f0
-        - https://www.dremio.com/blog/intro-to-dremio-nessie-and-apache-iceberg-on-your-laptop/ 
+## 🛠️ Requisitos Previos
+
+* **Python:** 3.11.9 (utilizado para scripts y pruebas locales).
+* **Docker y Docker Compose:** Para levantar las arquitecturas complejas (ej. Data Lakehouse con Iceberg/Dremio).
+
+## 📁 Estructura del Proyecto
+
+A continuación se detallan los formatos y protocolos explorados en este repositorio. Cada directorio contiene su propio `README.md` con instrucciones detalladas.
+
+### 1. Avro
+
+Ejemplos de serialización de datos usando Apache Avro en Python (`AvroExample.py`, `schema.avsc`). Incluye esquemas y generación de ficheros binarios.
+
+### 2. gRPC
+
+Implementaciones de comunicación RPC de alto rendimiento.
+
+* **Recursos:** Introducción a gRPC
+* **Ejemplos:** `helloworld`, `route_guide`.
+
+### 3. Parquet
+
+Exploración del formato de almacenamiento columnar Apache Parquet.
+
+* **Recursos:** Tutorial y Buenas Prácticas
+
+### 4. Delta Lake
+
+Pruebas con Delta Lake, formato de almacenamiento que aporta transacciones ACID a Apache Spark.
+
+* **Recursos:**
+  * Apache Spark via Homebrew
+  * Delta Lake Quickstart
+  * Introducción con PySpark
+
+### 5. Apache Iceberg
+
+Implementaciones de arquitecturas Data Lakehouse utilizando el formato de tabla abierta Apache Iceberg.
+
+* Contiene entornos completos dockerizados (ej. integración con Dremio, Nessie, Kafka y Spark).
+* **Recursos:**
+  * Iceberg Spark Quickstart
+  * PyIceberg Documentación
+  * Leyendo Iceberg con Python
+  * Arquitectura Local Dremio/Nessie/Iceberg
+  
