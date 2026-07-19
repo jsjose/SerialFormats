@@ -1,0 +1,12 @@
+services:
+  spark-qbeast:
+    build: .
+    container_name: spark-qbeast
+    ports:
+      - 8888:8888
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./warehouse:/home/jovyan/warehouse
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    command: start-notebook.sh --NotebookApp.token=''
