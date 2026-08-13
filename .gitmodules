@@ -1,0 +1,16 @@
+[submodule "Iceberg/docker-spark-iceberg"]
+	path = Iceberg/docker-spark-iceberg
+	url = https://github.com/jsjose/docker-spark-iceberg.git
+	branch = local-changes
+[submodule "Iceberg/dremio-file-ingestion-practice"]
+	path = Iceberg/dremio-file-ingestion-practice
+	url = https://github.com/jsjose/dremio-file-ingestion-practice.git
+	branch = main
+[submodule "Iceberg/dremio-nessie-kafka-connect"]
+	path = Iceberg/dremio-nessie-kafka-connect
+	url = https://github.com/jsjose/dremio-nessie-kafka-connect.git
+	branch = main
+[submodule "Iceberg/kafka-iceberg-streaming"]
+	path = Iceberg/kafka-iceberg-streaming
+	url = https://github.com/jsjose/kafka-iceberg-streaming.git
+	branch = main
